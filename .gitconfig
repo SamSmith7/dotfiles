@@ -1,0 +1,68 @@
+[alias]
+	# General
+	s = status
+	a = add
+	aa = add --all
+	c = commit
+	ci = commit -am
+	p = push
+	pf = push --force-with-lease
+	pu = "!f() { git push -u origin `git branch | grep '*' | awk '{print $2}'`; }; f"
+	d = diff
+	dc = diff --cached
+	amend = commit --amend --no-edit
+
+	# branch
+	b = branch
+	bd = branch -D
+	co = checkout
+	cob = checkout -b
+
+	# stash
+	st = stash
+	sts = stash save
+	stl = stash list
+	sta = "!f() { git stash apply stash@{$1}; }; f"
+	std = "!f() { git stash drop stash@{$1}; }; f"
+	stsh = "!f() { git stash show -p stash@{$1}; }; f"
+
+  	# logging
+  	l = log --oneline --graph
+  	lp = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+[branch]
+  	autosetuprebase = always
+[core]
+  	# Use custom `.gitignore`
+  	excludesfile = ~/.gitignore
+  	# Treat spaces before tabs, lines that are indented with 8 or more spaces, and all kinds of trailing whitespace as an error
+  	whitespace = space-before-tab,trailing-space
+  	editor = vim
+[color]
+  	# Use colors in Git commands that are capable of colored output when outputting to the terminal
+  	ui = auto
+[color "branch"]
+  	current = yellow reverse
+  	local = yellow
+  	remote = green
+[color "diff"]
+  	meta = yellow
+  	frag = magenta
+  	old = red
+  	new = green
+[color "status"]
+  	added = yellow
+  	changed = green
+  	untracked = cyan
+[filter "hawser"]
+  	clean = git hawser clean %f
+  	smudge = git hawser smudge %f
+  	required = true
+[push]
+  	default = simple
+[rebase]
+  	stat = true
+[rerere]
+  	enabled=true
+[user]
+	email = samuel.smith@algomi.com
+	name = Sam Smith
